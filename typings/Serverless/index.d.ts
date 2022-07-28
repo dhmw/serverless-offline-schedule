@@ -36,7 +36,6 @@ declare namespace Serverless {
   }
 
   type Event = {
-    // [type: string]: { rate: string; input?: object };
     schedule: { rate: string; input?: object } | string;
   };
 
