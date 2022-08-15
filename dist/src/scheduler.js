@@ -20,7 +20,7 @@ class OfflineScheduler {
                 cron.forEach(c => {
                     node_schedule_1.default.scheduleJob(c, () => {
                         try {
-                            utils_1.slsInvokeFunction(functionName, input);
+                            (0, utils_1.slsInvokeFunction)(functionName, input);
                             this.log(`Succesfully invoked scheduled function: [${functionName}]`);
                         }
                         catch (err) {
@@ -43,12 +43,12 @@ class OfflineScheduler {
                     }
                     return {
                         functionName,
-                        cron: rate.map(r => utils_1.convertExpressionToCron(r)),
+                        cron: rate.map(r => (0, utils_1.convertExpressionToCron)(r)),
                         input: typeof event['schedule'] === 'string' ? {} : event['schedule'].input || {},
                     };
                 });
             });
-            return lodash_flatten_1.default(scheduleConfigurations);
+            return (0, lodash_flatten_1.default)(scheduleConfigurations);
         };
         this.listenForTermination = () => {
             // SIGINT: usually sent when user presses CTRL+C

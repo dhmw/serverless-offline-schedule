@@ -21,7 +21,7 @@ const convertRateToCron = (rate) => {
     }
     throw new Error(`Invalid rate format: '${rate}'`);
 };
-exports.convertExpressionToCron = (scheduleRate) => {
+const convertExpressionToCron = (scheduleRate) => {
     if (scheduleRate.startsWith('cron(')) {
         return scheduleRate.replace('cron(', '').replace(')', '');
     }
@@ -31,6 +31,8 @@ exports.convertExpressionToCron = (scheduleRate) => {
     }
     throw new Error(`Invalid schedule rate: '${scheduleRate}'`);
 };
-exports.slsInvokeFunction = (name, input) => {
+exports.convertExpressionToCron = convertExpressionToCron;
+const slsInvokeFunction = (name, input) => {
     return child_process_1.default.execSync(`serverless invoke local --function ${name} --data '${JSON.stringify(input)}'`, { cwd: './', stdio: 'inherit' });
 };
+exports.slsInvokeFunction = slsInvokeFunction;
